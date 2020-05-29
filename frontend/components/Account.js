@@ -8,7 +8,7 @@ class Account extends Component {
         return (
             <Query query={CURRENT_USER_QUERY}>
               { ( {data, loading}) => {
-                  console.log("account info", data);
+                    // console.log("account info", data);
                     if(loading) return <p>Loading...</p>;
                     return (
                     <AccountStyles>

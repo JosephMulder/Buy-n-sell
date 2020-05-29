@@ -9,6 +9,10 @@ import OrderItemStyles from './styles/OrderItemStyles';
 import Error from './ErrorMessage';
 import formatDate from '../lib/formatDate';
 
+const OrderListHeader = styled.h2`
+    padding-inline-start: 60px;
+`;
+
 const USER_ORDERS_QUERY = gql`
     query USER_ORDERS_QUERY {
         orders(orderBy: createdAt_DESC) {
@@ -36,13 +40,35 @@ const OrderUl = styled.ul`
 class OrderList extends React.Component {
     render() {
         return (
+        <>
+            <OrderListHeader>Orders:</OrderListHeader>
             <Query query={USER_ORDERS_QUERY}>
                 { ({data: {orders}, loading, error}) => {
-                    console.log(orders);
-                    if(loading) return <p>loading...</p>;
-                    if(error) return <Error error={error}/>;
+                    // console.log(orders);
+                    if (loading) return <p>loading...</p>;
+                    if (error) return <Error error={error}/>;
+                    if (orders.length === 0) {
+                        return (
+                            <OrderUl>
+                                <OrderItemStyles>
+                                    <Link href={{
+                                    }}>
+                                        <a>
+                                            <div className="order-meta">
+                                                <p>No orders placed yet</p>
+                                            </div>
+                                            <div className="images">
+                                                <img  src="https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/b77fe464cfc445da9003a5383a3e1acf.jpg" alt="no-orders" />
+                                            </div>
+                                        </a>
+                                    </Link>
+                                </OrderItemStyles>
+                        </OrderUl>
+                        );
+                    }
                     return (
                         <OrderUl>
+
                             {orders.map( order => (
                                 <OrderItemStyles>
                                     <Link href={{
@@ -69,6 +95,7 @@ class OrderList extends React.Component {
                     )
                 }}
             </Query>
+        </>
         );
     }
 }
