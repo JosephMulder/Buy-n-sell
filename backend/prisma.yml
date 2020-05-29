@@ -1,4 +1,6 @@
-endpoint: ${env:PRISMA_ENDPOINT}
+#endpoint: ${env:PRISMA_ENDPOINT}
+#endpoint: https://buy-n-sell-e-1fe23d1a8d.herokuapp.com/buy-n-sell-e/produc
+endpoint: https://buy-n-sell-e-1fe23d1a8d.herokuapp.com/buy-n-sell-e/produc
 # endpoint: https://buy-n-sell-b281af9d13.herokuapp.com/buy-n-sell-production/production
 #endpoint: https://buy-n-sell-b281af9d13.herokuapp.com/buy-n-sell-production/prod
 #endpoint: https://buy-n-sell-e-1fe23d1a8d.herokuapp.com/buy-n-sell/produc
