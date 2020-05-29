@@ -35,7 +35,6 @@ server.start(
   {
     cors: {
       credentials: true,
-      // origin: "https://buy-n-sell-next-prod.herokuapp.com"
       origin: process.env.FRONTEND_URL,
     },
   },

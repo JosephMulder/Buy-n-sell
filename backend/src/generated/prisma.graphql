@@ -1,5 +1,5 @@
-# source: https://buy-n-sell-b281af9d13.herokuapp.com/buy-n-sell-production/prod
-# timestamp: Thu May 28 2020 21:35:13 GMT-0400 (Eastern Daylight Time)
+# source: https://us1.prisma.sh/joseph-mulder/sick-fits/dev
+# timestamp: Fri May 29 2020 14:34:31 GMT-0400 (Eastern Daylight Time)
 
 type AggregateCartItem {
   count: Int!
@@ -782,6 +782,8 @@ input OrderCreateInput {
   id: ID
   total: Int!
   charge: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   items: OrderItemCreateManyInput
   user: UserCreateOneInput!
 }
@@ -1551,6 +1553,8 @@ input OrderSubscriptionWhereInput {
 input OrderUpdateInput {
   total: Int
   charge: String
+  createdAt: DateTime
+  updatedAt: DateTime
   items: OrderItemUpdateManyInput
   user: UserUpdateOneRequiredInput
 }
@@ -1558,6 +1562,8 @@ input OrderUpdateInput {
 input OrderUpdateManyMutationInput {
   total: Int
   charge: String
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 input OrderWhereInput {

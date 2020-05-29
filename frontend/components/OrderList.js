@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
-import { formateDistance, formatDistance } from 'date-fns';
+import { formatDistance } from 'date-fns';
 import Link from 'next/link';
 import styled from 'styled-components';
 import gql from 'graphql-tag';
 import formatMoney from '../lib/formatMoney';
 import OrderItemStyles from './styles/OrderItemStyles';
 import Error from './ErrorMessage';
+import formatDate from '../lib/formatDate';
 
 const USER_ORDERS_QUERY = gql`
     query USER_ORDERS_QUERY {
@@ -37,9 +38,9 @@ class OrderList extends React.Component {
         return (
             <Query query={USER_ORDERS_QUERY}>
                 { ({data: {orders}, loading, error}) => {
+                    console.log(orders);
                     if(loading) return <p>loading...</p>;
                     if(error) return <Error error={error}/>;
-                    // console.log(orders);
                     return (
                         <OrderUl>
                             {orders.map( order => (
@@ -51,9 +52,9 @@ class OrderList extends React.Component {
                                         <a>
                                             <div className="order-meta">
                                                 <p>{order.items.reduce( (a,b) => a+b.quantity, 0) } Items</p>
-                                                <p>{order.items.length}</p>
-                                                <p>{formatDistance(order.createdAt, new Date())}</p>
-                                                <p>{formatMoney(order.total)}</p>
+                                                <p>{formatDate(order.createdAt)}</p>
+                                                {/* <p>{formatDistance(order.createdAt, new Date())}</p> */}
+                                                <p>Total: {formatMoney(order.total)}</p>
                                             </div>
                                             <div className="images">
                                                 {order.items.map(item => (

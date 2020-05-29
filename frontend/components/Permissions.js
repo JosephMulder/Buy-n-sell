@@ -38,7 +38,9 @@ const ALL_USERS_QUERY = gql`
 
 const Permissions = (props) => (
     <Query query={ALL_USERS_QUERY}>
-        { ({data, loading, error}) => (
+        { ({data, loading, error}) => {
+          if(loading) return <p>loading...</p>;
+          return (
             <div>
                 <Error error={error}/>
                 <div>
@@ -52,11 +54,12 @@ const Permissions = (props) => (
                         <th>👇🏻</th>
                     </tr>
                     </thead>
-                    <tbody>{data.users.map(user => <UserPermissions key={user.id} user={user} />)}</tbody>
+                    <tbody>{data ? data.users.map(user => <UserPermissions key={user.id} user={user} />) : <div></div>}</tbody>
                 </Table>
                 </div>
             </div>
-        )}
+          )
+        }}
     </Query>
 );
 
